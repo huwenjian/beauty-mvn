@@ -1,16 +1,9 @@
+import org.apache.spark.SparkConf
 
-object test {
+object Test {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = newSparkConf
-    val sc = new SparkContext(conf)
-    sc.textFile("C:\\Users\\huwenjian\\Desktop\\data\\credit-xiaomi.json")
-      .foreach {
-        line =>
-          val hello = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
-          println(hello.toString)
-      }
-    sc.stop()
+    print("hello")
   }
 
   private def newSparkConf = {
