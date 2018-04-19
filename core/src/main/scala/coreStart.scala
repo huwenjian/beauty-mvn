@@ -11,9 +11,7 @@ object coreStart {
     lines.foreach {
       line =>
         val hello = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
-
-
-        val h = SegmentWords.segment(hello.toString)
+        val h = SegmentWords.getCoreName(hello.toString)
     }
 
     sc.stop()

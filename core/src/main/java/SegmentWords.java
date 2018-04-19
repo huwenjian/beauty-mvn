@@ -12,18 +12,25 @@ import java.util.stream.Collectors;
 public class SegmentWords {
 
     public static void main(String[] args) {
-        String word = "美尼尔综合症 巴拉巴拉症 郑州小米商贸有限公司";
+        String word = "重庆市小米市饮食文化有限责任公司";
         getCoreName(word);
     }
 
-    public static void getCoreName(String name) {
+    public static String getCoreName(String name) {
+        System.out.print(name+"  ");
+        String core;
         List<Term> seg = getSegment().seg(name);
+        StringBuilder coreBuilder = new StringBuilder();
+
         for(Term s:seg){
-
-            System.out.print(s.word);
-            System.out.println(s.nature);
+            if (!s.nature.toString().equals("nt") && !s.nature.toString().equals("ns")&& !s.nature.toString().equals("w")&&!s.nature.toString().equals("nis")){
+                coreBuilder.append(s.word);
+            }
+//            System.out.println(s.word+s.nature);
         }
-
+        core = coreBuilder.toString();
+        System.out.println(core);
+        return core;
     }
 
 

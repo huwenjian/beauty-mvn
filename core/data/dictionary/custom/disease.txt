@@ -1,4 +1,2 @@
-小子得病 n-desease 1000
 美尼尔综合症 n-disease 10000
 巴拉巴拉症 n-disease 1024
-小米科技 n-company 100000
