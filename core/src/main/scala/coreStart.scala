@@ -5,14 +5,25 @@ object coreStart {
 
 
   def main(args: Array[String]): Unit = {
+//    System.setProperty("hadoop.home.dir", "D:\\work\\enviroment\\hadoop-2.6.5\\bin")
     val conf: SparkConf = newSparkConf
     val sc = new SparkContext(conf)
-    val lines = sc.textFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\credit-xiaomi.json")
-    lines.foreach {
+    val lines = sc.textFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\credit-xiaomi2.json")
+    lines.map {
       line =>
-        val hello = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
-        val h = SegmentWords.getCoreName(hello.toString)
-    }
+        println(line)
+        val name = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
+        val money = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("regist_capi")
+        if (money != null && !money.equals("")) {
+          val money2 = money.toString.toDouble
+          if (money2 > 10000) {
+            val coreName = SegmentWords.getCoreName(name.toString)
+
+          }
+        }
+    }.saveAsTextFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\result")
+
+
 
     sc.stop()
   }
@@ -26,11 +37,5 @@ object coreStart {
       .set("spark.executor.memory", "2g")
       .set("spark.rdd.compress", "true")
     conf
-  }
-
-  def removeRash(name: String): Unit = {
-    if (name.contains("农民专业合作社")) {
-      println(name)
-    }
   }
 }
