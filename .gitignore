@@ -24,4 +24,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-/core/data/*
+
+/core/data/
+/core/target/
