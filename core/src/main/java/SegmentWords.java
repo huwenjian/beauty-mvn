@@ -12,23 +12,23 @@ import java.util.stream.Collectors;
 public class SegmentWords {
 
     public static void main(String[] args) {
-        String word = "徐州小米矿山安全工程技术有限公司";
+        String word = "新疆天山小米农业科技有限公司";
         getCoreName(word);
     }
 
     public static String getCoreName(String name) {
-        String core;
         List<Term> seg = getSegment().seg(name);
         StringBuilder coreBuilder = new StringBuilder();
 
         for(Term s:seg){
+            System.out.print(s.word+s.nature +" ");
             if (!s.nature.toString().equals("nt") && !s.nature.toString().equals("ns")&& !s.nature.toString().equals("w")&&!s.nature.toString().equals("nis")){
                 coreBuilder.append(s.word);
             }
-            System.out.println(s.word+s.nature);
         }
-        core = coreBuilder.toString();
-        return core;
+
+        System.out.println(coreBuilder);
+        return coreBuilder.toString();
     }
 
 

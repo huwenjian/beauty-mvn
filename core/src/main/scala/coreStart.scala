@@ -5,23 +5,22 @@ object coreStart {
 
 
   def main(args: Array[String]): Unit = {
-//    System.setProperty("hadoop.home.dir", "D:\\work\\enviroment\\hadoop-2.6.5\\bin")
     val conf: SparkConf = newSparkConf
     val sc = new SparkContext(conf)
     val lines = sc.textFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\credit-xiaomi2.json")
     lines.map {
       line =>
-        println(line)
         val name = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
         val money = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("regist_capi")
         if (money != null && !money.equals("")) {
           val money2 = money.toString.toDouble
-          if (money2 > 10000) {
+          if (money2 > 1000) {
             val coreName = SegmentWords.getCoreName(name.toString)
 
           }
         }
-    }.saveAsTextFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\result")
+    }
+         .saveAsTextFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\result")
 
 
 
