@@ -1,3 +1,5 @@
+package com.kcm;
+
 import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.dictionary.CustomDictionary;
 import com.hankcs.hanlp.seg.Segment;
@@ -20,9 +22,9 @@ public class SegmentWords {
         List<Term> seg = getSegment().seg(name);
         StringBuilder coreBuilder = new StringBuilder();
 
-        for(Term s:seg){
-            System.out.print(s.word+s.nature +" ");
-            if (!s.nature.toString().equals("nt") && !s.nature.toString().equals("ns")&& !s.nature.toString().equals("w")&&!s.nature.toString().equals("nis")){
+        for (Term s : seg) {
+            System.out.print(s.word + s.nature + " ");
+            if (!s.nature.toString().equals("nt") && !s.nature.toString().equals("ns") && !s.nature.toString().equals("w") && !s.nature.toString().equals("nis")) {
                 coreBuilder.append(s.word);
             }
         }
@@ -73,3 +75,4 @@ public class SegmentWords {
         System.out.println(HanLP.segment(text));
     }
 }
+
