@@ -1,4 +1,3 @@
-import com.alibaba.fastjson.JSON
 import org.apache.spark.{SparkConf, SparkContext}
 
 object coreStart {
@@ -9,16 +8,7 @@ object coreStart {
     val sc = new SparkContext(conf)
     val lines = sc.textFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\credit-xiaomi2.json")
     lines.map {
-      line =>
-        val name = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("Name")
-        val money = JSON.parseObject(JSON.parseObject(line).get("_source").toString).get("regist_capi")
-        if (money != null && !money.equals("")) {
-          val money2 = money.toString.toDouble
-          if (money2 > 1000) {
-            val coreName = SegmentWords.getCoreName(name.toString)
-
-          }
-        }
+      line =>new Object
     }
          .saveAsTextFile("C:\\Users\\崔傅成\\Desktop\\data\\data\\result")
 

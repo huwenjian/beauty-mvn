@@ -14,9 +14,21 @@ import java.util.stream.Collectors;
 public class SegmentWords {
 
     public static void main(String[] args) {
-        String word = "新疆天山小米农业科技有限公司";
-        getCoreName(word);
+        System.out.println(isName("宋之劲"));
     }
+
+
+    /**
+     * 判断添加新词典之前 是否是名字
+     * 是 true
+     * 否 false
+     */
+    public static Boolean isName(String word) {
+        Segment segment = getSegment();
+        List<TermInput> result = segment.seg(word).stream().map(eachWorld -> new TermInput(eachWorld.word, eachWorld.nature.toString(), eachWorld.offset)).collect(Collectors.toList());
+        return result.size() == 1 && result.get(0).nature.equals("nr");
+    }
+
 
     public static String getCoreName(String name) {
         List<Term> seg = getSegment().seg(name);
