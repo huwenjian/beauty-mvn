@@ -1,3 +1,4 @@
+import com.kcm.SegmentWords
 import org.apache.spark.{SparkConf, SparkContext}
 
 object distinctName {
